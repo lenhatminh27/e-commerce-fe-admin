@@ -1,5 +1,11 @@
+import Router from "./routers"
+
 function App() {
-  return <></>
+  return (
+    <div className="container">
+      <Router />
+    </div>
+  )
 }
 
 export default App
