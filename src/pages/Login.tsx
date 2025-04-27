@@ -1,50 +1,72 @@
-import CustomButton from "../shared/components/Button/Button"
-import CustomInput from "../shared/components/Input/Input"
+import CustomButton from "../shared/components/Button"
+import CustomInput from "../shared/components/Input"
 import { useTranslation } from "react-i18next"
-import Language from "../shared/components/Language/Language"
+import Language from "../shared/components/Language"
 import { Link, useNavigate } from "react-router-dom"
 import { FcGoogle } from "react-icons/fc"
 import { RootState } from "../redux/store"
-import { LoginRequest } from "./../shared/types/auth"
-import { useState } from "react"
+import { LoginError, LoginRequest } from "./../shared/types/auth"
+import { useEffect, useState } from "react"
 import { useLoginMutation } from "../redux/auth/auth.service"
 import { useSelector } from "react-redux"
+import Loading from "../shared/components/Loading"
 
 const initialLoginForm: LoginRequest = {
   username: "",
   password: "",
 }
+
 const Login = () => {
   const [loginForm, setLoginForm] = useState<LoginRequest>(initialLoginForm)
-  const [loginError, setLoginError] = useState<LoginRequest>(initialLoginForm)
+  const [loginError, setLoginError] = useState<LoginError>(initialLoginForm)
+  const [stringError, setStringError] = useState<string>("")
 
   const { t } = useTranslation()
   const navigate = useNavigate()
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   )
-  const [login] = useLoginMutation()
-  if (isAuthenticated) {
-    navigate("/dashboard")
-  }
+  const [login, { isLoading }] = useLoginMutation()
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard", { replace: true })
+    }
+  }, [isAuthenticated])
   const handleChangeLoginForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setLoginForm((prev: LoginRequest) => ({ ...prev, [name]: value }))
-    if (loginError.username) {
-      setLoginError((prev: LoginRequest) => ({ ...prev, username: "" }))
+    if (loginError.username && name === "username") {
+      setLoginError((prev: LoginError) => ({ ...prev, username: "" }))
     }
-    if (loginError.password) {
-      setLoginError((prev: LoginRequest) => ({ ...prev, password: "" }))
+    if (loginError.password && name === "password") {
+      setLoginError((prev: LoginError) => ({ ...prev, password: "" }))
     }
   }
   const handleLogin = async () => {
-    if (!loginForm.username) {
+    let isValid = true
+    if (loginForm.username.trim() === "") {
       setLoginError((prev) => ({ ...prev, username: t("empty username") }))
+      isValid = false
     }
-    if (!loginForm.password) {
+    if (loginForm.password.trim() === "") {
       setLoginError((prev) => ({ ...prev, password: t("empty password") }))
+      isValid = false
     }
-    await login(loginForm)
+    if (isValid) {
+      try {
+        await login(loginForm).unwrap()
+      } catch (error: any) {
+        const err = error?.data.error
+        if (err && typeof err === "object") {
+          setLoginError({
+            username: err.username || "",
+            password: err.password || "",
+          })
+        } else {
+          setStringError("Wrong username/password")
+        }
+      }
+    }
   }
   return (
     <div className="">
@@ -53,11 +75,14 @@ const Login = () => {
           <Language />
         </div>
         <h1 className="text-[30px] font-bold">{t("Sign in")}</h1>
+        {stringError && (
+          <p className="text-red-500 relative left-0 w-4/5">{t(stringError)}</p>
+        )}
         <CustomInput
           name="username"
           content={t("Username")}
           isInvalid={!!loginError.username}
-          errorMessage={t("empty username")}
+          errorMessage={loginError.username && t(loginError.username)}
           placeholder={t("Enter username")}
           className="w-4/5"
           value={loginForm?.username}
@@ -67,7 +92,7 @@ const Login = () => {
           name="password"
           type="password"
           isInvalid={!!loginError.password}
-          errorMessage={t("empty password")}
+          errorMessage={loginError.password}
           content={t("Password")}
           placeholder={t("Enter password")}
           className="w-4/5"
@@ -90,6 +115,7 @@ const Login = () => {
           {t("Continue with Google")}
         </CustomButton>
       </div>
+      {isLoading && <Loading />}
     </div>
   )
 }

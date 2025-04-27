@@ -25,5 +25,17 @@
     "Username": "Username",
     "Enter username": "Enter username",
     "empty username": "Username can not be empty!",
-    "empty password": "Password can not be empty!"
+    "empty password": "Password can not be empty!",
+    "empty email": "Email can not be empty!",
+    "Wrong username/password": "Username/Password is incorrect!",
+    "Username must be a valid email or phone number.": "Username must be a valid email or phone number.",
+    "code message": "Your code will expire in:",
+    "expire code": "Code has expired!",
+    "Change password": "Change password",
+    "New password": "New password",
+    "Enter new password": "Enter new password",
+    "Confirm password": "Confirm password",
+    "Enter confirm password": "Enter confirm password",
+    "Password and Confirm Password do not match": "Password and Confirm Password do not match!",
+    "Change password successfully": "Change password successfully!"
 }

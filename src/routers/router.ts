@@ -10,12 +10,20 @@ export const publicRoutes: Route[] = [
     path: "/reset-password",
     component: lazy(() => import("../pages/ResetPassword")),
   },
+  {
+    path: "*",
+    component: lazy(() => import("../pages/NotFound")),
+  },
 ]
 
 export const privateRoutes: Route[] = [
   {
     path: "/dashboard",
     component: lazy(() => import("../pages/Dashboard")),
+  },
+  {
+    path: "/orders",
+    component: lazy(() => import("../pages/Order")),
   },
   {
     path: "/logout",

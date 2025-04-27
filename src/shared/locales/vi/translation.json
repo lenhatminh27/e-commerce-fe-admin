@@ -25,5 +25,17 @@
     "Username": "Tên tài khoản",
     "Enter username": "Nhập tên tài khoản",
     "empty username": "Tài khoản không được để trống!",
-    "empty password": "Mật khẩu không được để trống!"
+    "empty password": "Mật khẩu không được để trống!",
+    "empty email": "Email không được để trống!",
+    "Wrong username/password": "Tài khoản hoặc mật khẩu không đúng!",
+    "Username must be a valid email or phone number.": "Tên tài khoản phải là email hoặc SĐT hợp lệ!",
+    "code message": "Mã sẽ hết hạn sau:",
+    "expire code": "Mã đã hết hạn!",
+    "Change password": "Đổi mật khẩu",
+    "New password": "Mật khẩu mới",
+    "Enter new password": "Nhập mật khẩu mới",
+    "Confirm password": "Xác nhận mật khẩu",
+    "Enter confirm password": "Nhập mật khẩu xác nhận",
+    "Password and Confirm Password do not match": "Mật khẩu và Mật khẩu xác nhận không trùng khớp!",
+    "Change password successfully": "Đổi mật khẩu thành công!"
 }

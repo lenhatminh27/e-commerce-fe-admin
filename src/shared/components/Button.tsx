@@ -4,11 +4,15 @@ interface ButtonProps {
   children?: any
   className?: string
   onPress?: () => void
+  disabled?: boolean
 }
 function CustomButton(props: ButtonProps) {
-  const { children, className, onPress } = props
+  const { children, className, onPress, disabled } = props
   return (
-    <Button onPress={onPress} className={className + " rounded-sm"}>
+    <Button
+      onPress={onPress}
+      className={className + " rounded-sm"}
+      isDisabled={disabled}>
       {children}
     </Button>
   )

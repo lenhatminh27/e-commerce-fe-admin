@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { LoginRequest, LoginResponse } from "../../shared/types/auth"
 import { setAuth } from "./auth.slice"
+import { Response } from "../../shared/types/response.type"
 
 const apiUrl = import.meta.env.VITE_APIURL
 
@@ -14,12 +15,8 @@ export const authApi = createApi({
         method: "POST",
         body,
       }),
-      transformResponse: (response: any): LoginResponse => {
-        return {
-          accessToken: response.data.accessToken,
-          name: response.data.name,
-          username: response.data.username,
-        }
+      transformResponse: (response: Response<LoginResponse>): LoginResponse => {
+        return response.data
       },
       onQueryStarted: async (_, { queryFulfilled, dispatch }) => {
         try {

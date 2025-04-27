@@ -1,19 +1,30 @@
 import { Suspense } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Loading from "../shared/components/Loading/Loading"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import Loading from "../shared/components/Loading"
 import { publicRoutes, privateRoutes } from "./router"
 import PrivateRoute from "./PrivateRoute"
+import PublicRoute from "./PublicRoute"
 
-function Router() {
+function AppRouter() {
   return (
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
         <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
           {publicRoutes.map((route) => (
-            <Route path={route.path} element={<route.component />} />
+            <Route
+              key={route.path}
+              path={route.path}
+              element={
+                <PublicRoute>
+                  <route.component />
+                </PublicRoute>
+              }
+            />
           ))}
           {privateRoutes.map((route) => (
             <Route
+              key={route.path}
               path={route.path}
               element={
                 <PrivateRoute>
@@ -28,4 +39,4 @@ function Router() {
   )
 }
 
-export default Router
+export default AppRouter
