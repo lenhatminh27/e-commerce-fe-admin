@@ -6,12 +6,22 @@ import {
   VerifyCodeResponse,
 } from "../../shared/types/account"
 import { Response } from "../../shared/types/response.type"
+import { LANGUAGE } from "../../shared/constants/language"
 
 const apiUrl = import.meta.env.VITE_APIURL
 
 export const accountApi = createApi({
   reducerPath: "accountApi",
-  baseQuery: fetchBaseQuery({ baseUrl: apiUrl }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: apiUrl,
+    prepareHeaders: (headers) => {
+      const language = localStorage.getItem(LANGUAGE)
+      if (language) {
+        headers.set("Accept-Language", `${language}`)
+      }
+      return headers
+    },
+  }),
   endpoints: (build) => ({
     forgotPassword: build.mutation<void, ForgotPasswordRequest>({
       query: (body) => ({

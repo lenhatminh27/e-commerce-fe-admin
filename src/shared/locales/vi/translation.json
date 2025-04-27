@@ -37,5 +37,6 @@
     "Confirm password": "Xác nhận mật khẩu",
     "Enter confirm password": "Nhập mật khẩu xác nhận",
     "Password and Confirm Password do not match": "Mật khẩu và Mật khẩu xác nhận không trùng khớp!",
-    "Change password successfully": "Đổi mật khẩu thành công!"
+    "Change password successfully": "Đổi mật khẩu thành công!",
+    "Invalid code. Please enter exactly 6 alphanumeric characters.": "Mã không hợp lệ. Vui lòng nhập đúng 6 ký tự chữ hoặc số."
 }

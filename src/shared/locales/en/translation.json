@@ -37,5 +37,6 @@
     "Confirm password": "Confirm password",
     "Enter confirm password": "Enter confirm password",
     "Password and Confirm Password do not match": "Password and Confirm Password do not match!",
-    "Change password successfully": "Change password successfully!"
+    "Change password successfully": "Change password successfully!",
+    "Invalid code. Please enter exactly 6 alphanumeric characters.": "Invalid code. Please enter exactly 6 alphanumeric characters."
 }
