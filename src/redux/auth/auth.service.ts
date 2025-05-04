@@ -3,7 +3,7 @@ import { LoginRequest, LoginResponse } from "../../shared/types/auth"
 import { setAuth } from "./auth.slice"
 import { Response } from "../../shared/types/response.type"
 
-const apiUrl = import.meta.env.VITE_APIURL
+const apiUrl = import.meta.env.VITE_API_URL
 
 export const authApi = createApi({
   reducerPath: "authApi",

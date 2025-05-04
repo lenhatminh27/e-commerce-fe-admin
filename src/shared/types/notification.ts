@@ -1,0 +1,28 @@
+export interface NotificationResponse {
+  paging: NotificationPaging
+  contents: NotificationContent[]
+}
+
+export interface NotificationContent {
+  id: number
+  content: string
+  type: Type
+  isRead: boolean
+  targetUrl: string
+  createdAt: Date
+}
+
+export interface NotificationPaging {
+  pageNumber: number
+  pageSize: number
+  totalPage: number
+  totalRecord: number
+}
+
+export enum Type {
+  APPOINTMENT = "APPOINTMENT",
+  MESSAGE = "MESSAGE",
+  SYSTEM = "SYSTEM",
+  ALERT = "ALERT",
+  OTHER = "OTHER",
+}

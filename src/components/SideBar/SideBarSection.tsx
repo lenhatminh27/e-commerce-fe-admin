@@ -1,15 +1,18 @@
-import type { ReactNode } from "react"
+import { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
 interface SidebarSectionProps {
-  title: string
+  sectionName: string
   children: ReactNode
 }
 
-export function SidebarSection({ title, children }: SidebarSectionProps) {
+export function SidebarSection(props: SidebarSectionProps) {
+  const { sectionName, children } = props
+  const { t } = useTranslation()
   return (
-    <div className="px-3 mb-2">
-      <h3 className="text-xs font-medium text-white/50 px-3 mb-2">{title}</h3>
-      <div className="space-y-1">{children}</div>
+    <div className="flex flex-col mt-10">
+      <h5 className="ml-[20px]">{t(sectionName)}</h5>
+      {children}
     </div>
   )
 }

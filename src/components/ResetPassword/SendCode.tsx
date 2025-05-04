@@ -2,8 +2,8 @@ import { t } from "i18next"
 import CustomButton from "../../shared/components/Button"
 import CustomInput from "../../shared/components/Input"
 import Language from "../../shared/components/Language"
-import { useState } from "react"
 import { useForgotPasswordMutation } from "../../redux/account/account.service"
+import { expireTime } from "../../shared/constants/code"
 
 interface SendCodeProps {
   email: string
@@ -39,7 +39,7 @@ export default function SendCode(props: SendCodeProps) {
   const handleResetPassword = async () => {
     let isValid = true
     if (email.trim() === "") {
-      setInputError("empty email")
+      setInputError("validation.email.empty")
       isValid = false
     }
     if (isValid) {
@@ -47,7 +47,7 @@ export default function SendCode(props: SendCodeProps) {
         await forgotPassword({
           email: email,
         }).unwrap()
-        setTime(300000)
+        setTime(expireTime)
         setStart(Date.now())
         setStep()
         setInputError("")
@@ -66,14 +66,12 @@ export default function SendCode(props: SendCodeProps) {
           <Language />
         </div>
         <div className="text-center">
-          <h1 className="text-[30px] font-bold">{t("Password Reset")}</h1>
-          <p className="text-gray-600">
-            {t("We will help you reset your password")}
-          </p>
+          <h1 className="text-[30px] font-bold">{t("auth.reset.title")}</h1>
+          <p className="text-gray-600">{t("auth.reset.subtitle")}</p>
         </div>
         <CustomInput
           content="Email"
-          placeholder={t("Enter email address")}
+          placeholder={t("auth.register.enterEmail")}
           className="w-4/5"
           value={email}
           onChange={handleInput}
@@ -85,14 +83,14 @@ export default function SendCode(props: SendCodeProps) {
           className="bg-blue-950 text-white w-4/5 mt-2"
           onPress={handleResetPassword}
           disabled={isForgotPasswordLoading}>
-          {t("Reset password")}
+          {t("auth.reset.button")}
         </CustomButton>
         <div className="border-b-2 border-b-gray-200 w-4/5 mt-[30px]"></div>
-        <p className="text-gray-600">{t("Remembered your password")}</p>
+        <p className="text-gray-600">{t("auth.login.rememberedPassword")}</p>
         <CustomButton
           className="w-4/5 bg-transparent border-2 border-gray-300 text-blue-500"
           onPress={handleBackToSignIn}>
-          {t("Back to Sign In")}
+          {t("auth.login.backToSignIn")}
         </CustomButton>
       </div>
     </div>

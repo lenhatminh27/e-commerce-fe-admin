@@ -1,42 +1,35 @@
-import { Link } from "react-router-dom"
-import type { ReactNode } from "react"
+import { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
+import { MenuItem } from "react-pro-sidebar"
+import { Link, useLocation } from "react-router-dom"
 
 interface SidebarItemProps {
   icon?: ReactNode
   label: string
-  to: string
-  isActive?: boolean
-  badge?: number
-  className?: string
+  path: string
 }
 
-export function SidebarItem({
-  icon,
-  label,
-  to,
-  isActive = false,
-  badge,
-  className = "",
-}: SidebarItemProps) {
+export function SidebarItem(props: SidebarItemProps) {
+  const { icon, label, path } = props
+  const location = useLocation()
+  let isActive = false
+  if (location.pathname === path) {
+    isActive = true
+  }
+  const { t } = useTranslation()
   return (
-    <Link
-      to={to}
-      className={`
-        flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-md transition-colors
-        ${
-          isActive
-            ? "bg-white text-gray-600 "
-            : "text-white hover:text-white hover:bg-white/10 "
-        }
-        ${className}
-      `}>
-      {icon}
-      <span className="flex-1">{label}</span>
-      {badge && (
-        <span className="inline-flex items-center justify-center h-5 min-w-[20px] px-1 rounded-full bg-white/20 text-xs font-medium">
-          {badge}
-        </span>
-      )}
-    </Link>
+    <MenuItem
+      component={<Link to={path} />}
+      icon={icon}
+      active={isActive}
+      className={
+        "w-4/5 h-[40px] my-2 cursor-pointer flex items-center rounded-lg hover:!rounded-lg transition-all" +
+        " " +
+        (isActive && "bg-white text-gray-950 font-medium") +
+        " " +
+        (!isActive && "hover:bg-gray-600/50")
+      }>
+      {t(label)}
+    </MenuItem>
   )
 }

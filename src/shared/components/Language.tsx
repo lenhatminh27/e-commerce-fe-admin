@@ -1,11 +1,15 @@
-import { Image, Switch } from "@heroui/react"
+import { Image } from "@heroui/react"
 import enImg from "../../assets/language/english.png"
 import viImg from "../../assets/language/vietnam.png"
 import { EN, LANGUAGE, VI } from "../constants/language"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
-function Language() {
+interface LanguageProps {
+  className?: string
+}
+function Language(props: LanguageProps) {
+  const { className } = props
   const [language, setLanguage] = useState<string>(
     localStorage.getItem(LANGUAGE) || EN
   )
@@ -18,19 +22,12 @@ function Language() {
   }
 
   return (
-    <Switch
-      onChange={handleClick}
-      value={language}
-      isSelected={language === VI}
-      color="default"
-      size="lg"
-      thumbIcon={({ isSelected }) =>
-        isSelected ? (
-          <Image src={viImg} className="w-[24px] h-auto" />
-        ) : (
-          <Image src={enImg} className="w-[27px] h-auto" />
-        )
-      }></Switch>
+    <div className={className + " " + "flex-shrink-0"}>
+      <Image
+        className="cursor-pointer w-[30px]"
+        onClick={handleClick}
+        src={language === "en" ? enImg : viImg}></Image>
+    </div>
   )
 }
 

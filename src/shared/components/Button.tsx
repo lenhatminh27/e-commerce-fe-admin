@@ -6,7 +6,7 @@ interface ButtonProps {
   onPress?: () => void
   disabled?: boolean
 }
-function CustomButton(props: ButtonProps) {
+const CustomButton = (props: ButtonProps) => {
   const { children, className, onPress, disabled } = props
   return (
     <Button

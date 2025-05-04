@@ -1,6 +1,4 @@
-import CustomButton from "../shared/components/Button"
 import { useTranslation } from "react-i18next"
-import Language from "../shared/components/Language"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import {
@@ -9,10 +7,11 @@ import {
   useVerifyCodeMutation,
 } from "../redux/account/account.service"
 import { VerifyCodeError } from "../shared/types/account"
-import { CiCircleCheck } from "react-icons/ci"
 import SendCode from "../components/ResetPassword/SendCode"
 import ConfirmCode from "../components/ResetPassword/ConfirmCode"
 import ChangePassword from "../components/ResetPassword/ChangePassword"
+import { expireTime } from "../shared/constants/code"
+import ChangePasswordSuccess from "../components/ResetPassword/ChangePasswordSuccess"
 
 export interface ChangePasswordForm {
   password: string
@@ -22,6 +21,8 @@ export interface ChangePasswordFormError {
   passwordError: string
   confirmPasswordError: string
 }
+
+const now = Date.now()
 
 const ResetPassword = () => {
   const [email, setEmail] = useState<string>("")
@@ -38,11 +39,11 @@ const ResetPassword = () => {
       passwordError: "",
       confirmPasswordError: "",
     })
-  const [time, setTime] = useState<number>(300000)
-  const [start, setStart] = useState<number>(Date.now())
+  const [time, setTime] = useState<number>(expireTime)
+  const [start, setStart] = useState<number>(now)
 
-  const { t } = useTranslation()
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const [forgotPassword] = useForgotPasswordMutation()
   const [verifyCode, { isLoading: isVerifyCodeLoading }] =
@@ -92,7 +93,6 @@ const ResetPassword = () => {
       await forgotPassword({
         email: email,
       }).unwrap()
-      setTime(300000)
       setStart(Date.now())
     } catch (error: any) {
       const err = error?.data.error.email
@@ -121,21 +121,21 @@ const ResetPassword = () => {
       isValid = false
       setChangePasswordFormError((prev) => ({
         ...prev,
-        passwordError: "empty password",
+        passwordError: "validation.password.empty",
       }))
     }
     if (changePasswordForm.password !== changePasswordForm.confirmPassword) {
       isValid = false
       setChangePasswordFormError((prev) => ({
         ...prev,
-        confirmPasswordError: "Password and Confirm Password do not match",
+        confirmPasswordError: "auth.changePassword.notMatch",
       }))
     }
     if (changePasswordForm.confirmPassword.trim() === "") {
       isValid = false
       setChangePasswordFormError((prev) => ({
         ...prev,
-        confirmPasswordError: "empty password",
+        confirmPasswordError: "validation.password.empty",
       }))
     }
 
@@ -191,20 +191,7 @@ const ResetPassword = () => {
       )}
 
       {step === 4 && (
-        <div className="relative flex flex-col items-center w-full max-w-[500px] mx-auto md:rounded mt-[50px] space-y-4 bg-gray-50 py-[20px] md:py-[50px]">
-          <div className="absolute top-[10px] right-[20px]">
-            <Language />
-          </div>
-          <CiCircleCheck size={"150"} color="green" />
-          <h1 className="text-xl text-green-700">
-            {t("Change password successfully")}
-          </h1>
-          <CustomButton
-            className="w-4/5 bg-transparent border-2 border-gray-300 text-blue-500"
-            onPress={handleBackToSignIn}>
-            {t("Back to Sign In")}
-          </CustomButton>
-        </div>
+        <ChangePasswordSuccess handleBackToSignIn={handleBackToSignIn} />
       )}
     </>
   )

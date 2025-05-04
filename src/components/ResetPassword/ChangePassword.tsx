@@ -30,13 +30,15 @@ export default function ChangePassword(props: ChangePasswordProps) {
           <Language />
         </div>
         <div className="text-center">
-          <h1 className="text-[30px] font-bold">{t("Change password")}</h1>
+          <h1 className="text-[30px] font-bold">
+            {t("auth.changePassword.title")}
+          </h1>
         </div>
         <CustomInput
           name="password"
-          content={t("New password")}
+          content={t("auth.changePassword.newPassword")}
           type="password"
-          placeholder={t("Enter new password")}
+          placeholder={t("auth.changePassword.enterNewPassword")}
           className="w-4/5"
           value={changePasswordForm.password}
           onChange={handleSetPassword}
@@ -45,9 +47,9 @@ export default function ChangePassword(props: ChangePasswordProps) {
         />
         <CustomInput
           name="confirmPassword"
-          content={t("Confirm password")}
+          content={t("auth.changePassword.confirmPassword")}
           type="password"
-          placeholder={t("Enter confirm password")}
+          placeholder={t("auth.changePassword.enterConfirmPassword")}
           className="w-4/5"
           value={changePasswordForm.confirmPassword}
           onChange={handleSetPassword}
@@ -58,7 +60,7 @@ export default function ChangePassword(props: ChangePasswordProps) {
           className="bg-blue-950 text-white w-4/5 mt-2"
           onPress={handleChangePassword}
           disabled={isChangePasswordLoading}>
-          {t("Reset password")}
+          {t("auth.reset.button")}
         </CustomButton>
       </div>
     </div>

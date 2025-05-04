@@ -1,42 +1,69 @@
-{ 
-    "Create an account": "Create an Account",
-    "Have an account": "Have an account?",
-    "Sign in": "Sign in",
-    "Enter email address": "Enter Email Address",
-    "Password": "Password",
-    "Create account": "Create Account",
-    "Google login": "Continue with Google",
-    "New to our Product": "New to our Product?",
-    "Enter password": "Enter password",
-    "Password Reset": "Password Reset",
-    "Forgot your password": "Forgot your password?",
-    "Or sign in using": "Or sign in using:",
-    "Continue with Google": "Continue with Google",
-    "We will help you reset your password": "We will help you reset your password",
-    "Reset password": "Reset password",
-    "Remembered your password": "Remembered your password?",
-    "Back to Sign In": "Back to Sign In",
-    "Confirm Email": "Confirm Email",
-    "Check email": "Check Your Email and Enter Confirmation Code",
-    "Confirmation Code": "Confirmation Code",
-    "Enter Code": "Enter Code",
-    "Haven't received your code": "Haven't received your code?",
-    "Resend code": "Resend code",
-    "Username": "Username",
-    "Enter username": "Enter username",
-    "empty username": "Username can not be empty!",
-    "empty password": "Password can not be empty!",
-    "empty email": "Email can not be empty!",
-    "Wrong username/password": "Username/Password is incorrect!",
-    "Username must be a valid email or phone number.": "Username must be a valid email or phone number.",
-    "code message": "Your code will expire in:",
-    "expire code": "Code has expired!",
-    "Change password": "Change password",
-    "New password": "New password",
-    "Enter new password": "Enter new password",
-    "Confirm password": "Confirm password",
-    "Enter confirm password": "Enter confirm password",
-    "Password and Confirm Password do not match": "Password and Confirm Password do not match!",
-    "Change password successfully": "Change password successfully!",
-    "Invalid code. Please enter exactly 6 alphanumeric characters.": "Invalid code. Please enter exactly 6 alphanumeric characters."
-}
+{
+    "auth.register.title": "Create an Account",
+    "auth.register.haveAccount": "Have an account?",
+    "auth.register.button": "Create Account",
+    "auth.register.google": "Continue with Google",
+    "auth.register.newUser": "New to our Product?",
+    "auth.register.username": "Username",
+    "auth.register.enterUsername": "Enter username",
+    "auth.register.enterEmail": "Enter Email Address",
+    "auth.register.enterPassword": "Enter password",
+  
+    "auth.login.title": "Sign in",
+    "auth.login.button": "Sign in",
+    "auth.login.username": "Username",
+    "auth.login.password": "Password",
+    "auth.login.orGoogle": "Or sign in using:",
+    "auth.login.google": "Continue with Google",
+    "auth.login.forgotPassword": "Forgot your password?",
+    "auth.login.rememberedPassword": "Remembered your password?",
+    "auth.login.backToSignIn": "Back to Sign In",
+
+    "auth.logout.title": "Log out",
+  
+    "auth.reset.title": "Password Reset",
+    "auth.reset.subtitle": "We will help you reset your password",
+    "auth.reset.button": "Reset password",
+  
+    "auth.confirmEmail.title": "Confirm Email",
+    "auth.confirmEmail.subtitle": "Check Your Email and Enter Confirmation Code",
+    "auth.confirmEmail.codeLabel": "Confirmation Code",
+    "auth.confirmEmail.enterCode": "Enter Code",
+    "auth.confirmEmail.notReceived": "Haven't received your code?",
+    "auth.confirmEmail.resend": "Resend code",
+  
+    "auth.changePassword.title": "Change password",
+    "auth.changePassword.newPassword": "New password",
+    "auth.changePassword.enterNewPassword": "Enter new password",
+    "auth.changePassword.confirmPassword": "Confirm password",
+    "auth.changePassword.enterConfirmPassword": "Enter confirm password",
+    "auth.changePassword.notMatch": "Password and Confirm Password do not match!",
+    "auth.changePassword.success": "Change password successfully!",
+  
+    "validation.username.empty": "Username can not be empty!",
+    "validation.password.empty": "Password can not be empty!",
+    "validation.email.empty": "Email can not be empty!",
+    "validation.login.invalid": "Username/Password is incorrect!",
+    "validation.username.invalid": "Username must be a valid email or phone number.",
+    "validation.code.invalid": "Invalid code. Please enter exactly 6 alphanumeric characters.",
+    "validation.code.expired": "Code has expired!",
+  
+    "common.code.message": "Your code will expire in:",
+
+    "dashboard.title": "Dashboard",
+
+    "orders.title": "Orders",
+
+    "products.title": "Products",
+
+    "categories.title": "Categories",
+    
+    "customers.title": "Customers",
+    
+    "reports.title": "Reports",
+    
+    "settings.title": "Settings",
+    "setting.personalSetting.title": "Personal Setting",
+    "setting.globalSetting.title": "Global Setting"
+    
+  }

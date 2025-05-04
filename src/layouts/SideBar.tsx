@@ -1,148 +1,103 @@
-import { useLocation } from "react-router-dom"
-import {
-  HiHome,
-  HiTag,
-  HiFolder,
-  HiUser,
-  HiChartBar,
-  HiChat,
-  HiQuestionMarkCircle,
-  HiMenu,
-  HiPlus,
-} from "react-icons/hi"
-import { FaStar } from "react-icons/fa"
-import { IoNotifications } from "react-icons/io5"
+import { Menu, Sidebar } from "react-pro-sidebar"
 import { SidebarItem } from "../components/SideBar/SideBarItem"
-import { SidebarSection } from "../components/SideBar/SideBarSection"
+import { CiHome } from "react-icons/ci"
+import { MdList, MdPeopleAlt } from "react-icons/md"
 import { useEffect, useState } from "react"
+import useWindowSize from "../shared/hooks/useWindowSize"
+import { IoMenu } from "react-icons/io5"
+import { AiOutlineTag } from "react-icons/ai"
+import { FaRegFolder } from "react-icons/fa"
+import { SidebarSection } from "../components/SideBar/SideBarSection"
+import { PiChartBar } from "react-icons/pi"
+import { IoMdPerson, IoMdSettings } from "react-icons/io"
+import { t } from "i18next"
 
-export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  const location = useLocation()
-  const currentPath = location.pathname
+function SideBar() {
+  const [collapsed, setCollapsed] = useState<boolean>(false)
+  const { width } = useWindowSize()
 
   useEffect(() => {
-    const checkScreen = () => {
-      if (window.innerWidth >= 768) {
-        setIsOpen(true)
-      } else {
-        setIsOpen(false)
-      }
-    }
-    checkScreen()
-    window.addEventListener("resize", checkScreen)
-    return () => window.removeEventListener("resize", checkScreen)
-  }, [])
+    if (width < 768) {
+      setCollapsed(true)
+    } else setCollapsed(false)
+  }, [width])
+
+  const menu = collapsed ? 20 : 285
 
   return (
-    <div className={`flex bg-gray-100 ${!isOpen && "-ml-[200px]"}`}>
-      <div className="w-[200px] md:w-[300px] py-[10px] px-[10px] h-full bg-blue-950 text-white flex flex-col overflow-y-auto scrollbar-hide">
-        <div className="flex-1">
-          <nav className="space-y-1 px-3">
-            <SidebarItem
-              icon={<HiHome className="h-5 w-5" />}
-              label="Dashboard"
-              to="/dashboard"
-              isActive={currentPath === "/dashboard"}
-            />
-            <SidebarItem
-              icon={<HiMenu className="h-5 w-5" />}
-              label="Orders"
-              to="/orders"
-              isActive={currentPath === "/orders"}
-              badge={16}
-            />
-            <SidebarItem
-              icon={<HiTag className="h-5 w-5" />}
-              label="Products"
-              to="/products"
-              isActive={currentPath === "/products"}
-            />
-            <SidebarItem
-              icon={<HiFolder className="h-5 w-5" />}
-              label="Categories"
-              to="/categories"
-              isActive={currentPath === "/categories"}
-            />
-            <SidebarItem
-              icon={<HiUser className="h-5 w-5" />}
-              label="Customers"
-              to="/customers"
-              isActive={currentPath === "/customers"}
-            />
-            <SidebarItem
-              icon={<HiChartBar className="h-5 w-5" />}
-              label="Reports"
-              to="/reports"
-              isActive={currentPath === "/reports"}
-            />
-            <SidebarItem
-              icon={<FaStar className="h-5 w-5" />}
-              label="Coupons"
-              to="/coupons"
-              isActive={currentPath === "/coupons"}
-            />
-            <SidebarItem
-              icon={<HiChat className="h-5 w-5" />}
-              label="Inbox"
-              to="/inbox"
-              isActive={currentPath === "/inbox"}
-            />
-          </nav>
-        </div>
-        <div className="mt-6 mb-6">
-          <SidebarSection title="Other Information">
-            <SidebarItem
-              icon={<HiQuestionMarkCircle className="h-5 w-5" />}
-              label="Knowledge Base"
-              to="/knowledge-base"
-              isActive={currentPath === "/knowledge-base"}
-            />
-            <SidebarItem
-              icon={<IoNotifications className="h-5 w-5" />}
-              label="Product Updates"
-              to="/product-updates"
-              isActive={currentPath === "/product-updates"}
-            />
-          </SidebarSection>
+    <div className="flex flex-row">
+      <IoMenu
+        size="30"
+        className="fixed top-[80px] p-1 z-10 cursor-pointer bg-gray-500 text-white transition-all duration-300 rounded-3xl"
+        style={{ left: menu }}
+        onClick={() => setCollapsed(!collapsed)}
+      />
 
-          <SidebarSection title="Other Information">
+      <Sidebar
+        collapsed={collapsed}
+        onBackdropClick={() => setCollapsed(true)}
+        onToggle={() => setCollapsed(!collapsed)}
+        className="h-full"
+        collapsedWidth="0px"
+        width="300px">
+        <Menu
+          closeOnClick={true}
+          className="bg-blue-950 text-white p-3 h-full scrollbar-hide"
+          menuItemStyles={{
+            button: {
+              width: "80%",
+              ":hover": {
+                backgroundColor: "transparent",
+                scale: "1.1",
+              },
+            },
+          }}>
+          <SidebarItem
+            icon={<CiHome size="20" />}
+            label={"dashboard.title"}
+            path="/dashboard"
+          />
+          <SidebarItem
+            icon={<MdList size="20" />}
+            label={"orders.title"}
+            path="/orders"
+          />
+          <SidebarItem
+            icon={<AiOutlineTag size="20" />}
+            label={"products.title"}
+            path="/products"
+          />
+          <SidebarItem
+            icon={<FaRegFolder size="20" />}
+            label={"categories.title"}
+            path="/categories"
+          />
+          <SidebarItem
+            icon={<MdPeopleAlt size="20" />}
+            label={"customers.title"}
+            path="/customers"
+          />
+          <SidebarItem
+            icon={<PiChartBar size="20" />}
+            label={"reports.title"}
+            path="/reports"
+          />
+          <SidebarSection sectionName={"settings.title"}>
             <SidebarItem
-              icon={<HiQuestionMarkCircle className="h-5 w-5" />}
-              label="Knowledge Base"
-              to="/knowledge-base"
-              isActive={currentPath === "/knowledge-base"}
+              icon={<IoMdPerson size="20" />}
+              label={"setting.personalSetting.title"}
+              path="/personal-setting"
             />
             <SidebarItem
-              icon={<IoNotifications className="h-5 w-5" />}
-              label="Product Updates"
-              to="/product-updates"
-              isActive={currentPath === "/product-updates"}
+              icon={<IoMdSettings size="20" />}
+              label={"setting.globalSetting.title"}
+              path="/global-setting"
             />
           </SidebarSection>
-          <SidebarSection title="Other Information">
-            <SidebarItem
-              icon={<HiQuestionMarkCircle className="h-5 w-5" />}
-              label="Knowledge Base"
-              to="/knowledge-base"
-              isActive={currentPath === "/knowledge-base"}
-            />
-            <SidebarItem
-              icon={<IoNotifications className="h-5 w-5" />}
-              label="Product Updates"
-              to="/product-updates"
-              isActive={currentPath === "/product-updates"}
-            />
-          </SidebarSection>
-        </div>
-      </div>
-      <div>
-        <div
-          className="rounded-full w-auto h-auto bg-white mt-5 ml-5"
-          onClick={() => setIsOpen(!isOpen)}>
-          <HiPlus size="32" />
-        </div>
-      </div>
+        </Menu>
+      </Sidebar>
     </div>
   )
 }
+
+export default SideBar

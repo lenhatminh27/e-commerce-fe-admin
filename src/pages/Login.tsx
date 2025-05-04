@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next"
 import Language from "../shared/components/Language"
 import { Link, useNavigate } from "react-router-dom"
 import { FcGoogle } from "react-icons/fc"
-import { RootState } from "../redux/store"
-import { LoginError, LoginRequest } from "./../shared/types/auth"
-import { useEffect, useState } from "react"
+import { LoginError, LoginRequest, LoginResponse } from "./../shared/types/auth"
+import { useState } from "react"
 import { useLoginMutation } from "../redux/auth/auth.service"
-import { useSelector } from "react-redux"
 import Loading from "../shared/components/Loading"
+import { USER_CURRENT } from "../shared/constants/user"
+import { connectStomp, subscribeTo } from "../shared/lib/stompClient"
 
 const initialLoginForm: LoginRequest = {
   username: "",
@@ -23,38 +23,44 @@ const Login = () => {
 
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
-  )
   const [login, { isLoading }] = useLoginMutation()
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/dashboard", { replace: true })
-    }
-  }, [isAuthenticated])
   const handleChangeLoginForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setLoginForm((prev: LoginRequest) => ({ ...prev, [name]: value }))
-    if (loginError.username && name === "username") {
-      setLoginError((prev: LoginError) => ({ ...prev, username: "" }))
-    }
-    if (loginError.password && name === "password") {
-      setLoginError((prev: LoginError) => ({ ...prev, password: "" }))
-    }
+    setLoginError(initialLoginForm)
+    setStringError("")
   }
   const handleLogin = async () => {
     let isValid = true
     if (loginForm.username.trim() === "") {
-      setLoginError((prev) => ({ ...prev, username: t("empty username") }))
+      setLoginError((prev) => ({
+        ...prev,
+        username: "validation.username.empty",
+      }))
       isValid = false
     }
     if (loginForm.password.trim() === "") {
-      setLoginError((prev) => ({ ...prev, password: t("empty password") }))
+      setLoginError((prev) => ({
+        ...prev,
+        password: "validation.password.empty",
+      }))
       isValid = false
     }
     if (isValid) {
       try {
         await login(loginForm).unwrap()
+        const auth = JSON.parse(
+          localStorage.getItem(USER_CURRENT) as string
+        ) as Omit<LoginResponse, "accessToken">
+        console.log("auth:" + auth)
+
+        connectStomp(() => {
+          subscribeTo(`/notification/${auth.username}`, (msg) => {
+            const content = JSON.parse(msg.body)
+            console.log("📥 New message:", content)
+          })
+        })
+        navigate("/dashboard", { replace: true })
       } catch (error: any) {
         const err = error?.data.error
         if (err && typeof err === "object") {
@@ -63,7 +69,7 @@ const Login = () => {
             password: err.password || "",
           })
         } else {
-          setStringError("Wrong username/password")
+          setStringError("validation.login.invalid")
         }
       }
     }
@@ -74,16 +80,16 @@ const Login = () => {
         <div className="absolute right-[20px]">
           <Language />
         </div>
-        <h1 className="text-[30px] font-bold">{t("Sign in")}</h1>
+        <h1 className="text-[30px] font-bold">{t("auth.login.title")}</h1>
         {stringError && (
           <p className="text-red-500 relative left-0 w-4/5">{t(stringError)}</p>
         )}
         <CustomInput
           name="username"
-          content={t("Username")}
+          content={t("auth.login.username")}
           isInvalid={!!loginError.username}
           errorMessage={loginError.username && t(loginError.username)}
-          placeholder={t("Enter username")}
+          placeholder={t("auth.register.enterUsername")}
           className="w-4/5"
           value={loginForm?.username}
           onChange={handleChangeLoginForm}
@@ -92,9 +98,9 @@ const Login = () => {
           name="password"
           type="password"
           isInvalid={!!loginError.password}
-          errorMessage={loginError.password}
-          content={t("Password")}
-          placeholder={t("Enter password")}
+          errorMessage={loginError.password && t(loginError.password)}
+          content={t("auth.login.password")}
+          placeholder={t("auth.register.enterPassword")}
           className="w-4/5"
           value={loginForm?.password}
           onChange={handleChangeLoginForm}
@@ -102,17 +108,17 @@ const Login = () => {
         <CustomButton
           className="bg-blue-950 text-white w-4/5 mt-2"
           onPress={handleLogin}>
-          {t("Sign in")}
+          {t("auth.login.button")}
         </CustomButton>
         <Link
           to={"/reset-password"}
           className="text-blue-500 border-b-2 border-b-gray-200 w-4/5 text-center pb-[20px]">
-          {t("Forgot your password")}
+          {t("auth.login.forgotPassword")}
         </Link>
-        <p>{t("Or sign in using")}</p>
+        <p>{t("auth.login.orGoogle")}</p>
         <CustomButton className="w-4/5 bg-transparent border-2 border-gray-300 text-blue-500">
           <FcGoogle size="25" />
-          {t("Continue with Google")}
+          {t("auth.login.google")}
         </CustomButton>
       </div>
       {isLoading && <Loading />}

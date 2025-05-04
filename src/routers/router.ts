@@ -23,10 +23,30 @@ export const privateRoutes: Route[] = [
   },
   {
     path: "/orders",
-    component: lazy(() => import("../pages/Order")),
+    component: lazy(() => import("../pages/Orders")),
   },
   {
-    path: "/logout",
-    component: lazy(() => import("../pages/Logout")),
+    path: "/products",
+    component: lazy(() => import("../pages/Products")),
+  },
+  {
+    path: "/categories",
+    component: lazy(() => import("../pages/Categories")),
+  },
+  {
+    path: "/customers",
+    component: lazy(() => import("../pages/Customers")),
+  },
+  {
+    path: "/reports",
+    component: lazy(() => import("../pages/Reports")),
+  },
+  {
+    path: "/personal-setting",
+    component: lazy(() => import("../pages/PersonalSetting")),
+  },
+  {
+    path: "/global-setting",
+    component: lazy(() => import("../pages/GlobalSetting")),
   },
 ]

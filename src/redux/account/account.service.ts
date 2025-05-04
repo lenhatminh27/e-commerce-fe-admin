@@ -8,7 +8,7 @@ import {
 import { Response } from "../../shared/types/response.type"
 import { LANGUAGE } from "../../shared/constants/language"
 
-const apiUrl = import.meta.env.VITE_APIURL
+const apiUrl = import.meta.env.VITE_API_URL
 
 export const accountApi = createApi({
   reducerPath: "accountApi",
