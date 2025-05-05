@@ -24,7 +24,9 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   function (response) {
-    const newToken = response.headers["X-New-Access-Token"]
+    const newToken = response.headers["x-new-access-token"]
+    console.log(newToken)
+    console.log(response.headers)
     if (newToken) {
       localStorage.setItem(ACCESS_TOKEN, newToken)
     }
