@@ -14,6 +14,7 @@ export const accountApi = createApi({
   reducerPath: "accountApi",
   baseQuery: fetchBaseQuery({
     baseUrl: apiUrl,
+    credentials: "include",
     prepareHeaders: (headers) => {
       const language = localStorage.getItem(LANGUAGE)
       if (language) {

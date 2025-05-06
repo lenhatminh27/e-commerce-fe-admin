@@ -6,7 +6,7 @@ export interface NotificationResponse {
 export interface NotificationContent {
   id: number
   content: string
-  type: Type
+  type: NotificationType
   isRead: boolean
   targetUrl: string
   createdAt: Date
@@ -19,7 +19,7 @@ export interface NotificationPaging {
   totalRecord: number
 }
 
-export enum Type {
+export enum NotificationType {
   APPOINTMENT = "APPOINTMENT",
   MESSAGE = "MESSAGE",
   SYSTEM = "SYSTEM",

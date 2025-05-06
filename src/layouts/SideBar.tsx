@@ -85,12 +85,12 @@ function SideBar() {
           <SidebarSection sectionName={"settings.title"}>
             <SidebarItem
               icon={<IoMdPerson size="20" />}
-              label={"setting.personalSetting.title"}
+              label={"settings.personalSetting.title"}
               path="/personal-setting"
             />
             <SidebarItem
               icon={<IoMdSettings size="20" />}
-              label={"setting.globalSetting.title"}
+              label={"settings.globalSetting.title"}
               path="/global-setting"
             />
           </SidebarSection>

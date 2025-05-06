@@ -5,7 +5,7 @@ import Search from "../shared/components/Search"
 import Account from "../shared/components/Avatar"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-import Notification from "../shared/components/Notification"
+import Notification from "../components/Notification/Notification"
 import Language from "../shared/components/Language"
 import Message from "../shared/components/Message"
 

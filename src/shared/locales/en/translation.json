@@ -1,69 +1,116 @@
 {
-    "auth.register.title": "Create an Account",
-    "auth.register.haveAccount": "Have an account?",
-    "auth.register.button": "Create Account",
-    "auth.register.google": "Continue with Google",
-    "auth.register.newUser": "New to our Product?",
-    "auth.register.username": "Username",
-    "auth.register.enterUsername": "Enter username",
-    "auth.register.enterEmail": "Enter Email Address",
-    "auth.register.enterPassword": "Enter password",
-  
-    "auth.login.title": "Sign in",
-    "auth.login.button": "Sign in",
-    "auth.login.username": "Username",
-    "auth.login.password": "Password",
-    "auth.login.orGoogle": "Or sign in using:",
-    "auth.login.google": "Continue with Google",
-    "auth.login.forgotPassword": "Forgot your password?",
-    "auth.login.rememberedPassword": "Remembered your password?",
-    "auth.login.backToSignIn": "Back to Sign In",
-
-    "auth.logout.title": "Log out",
-  
-    "auth.reset.title": "Password Reset",
-    "auth.reset.subtitle": "We will help you reset your password",
-    "auth.reset.button": "Reset password",
-  
-    "auth.confirmEmail.title": "Confirm Email",
-    "auth.confirmEmail.subtitle": "Check Your Email and Enter Confirmation Code",
-    "auth.confirmEmail.codeLabel": "Confirmation Code",
-    "auth.confirmEmail.enterCode": "Enter Code",
-    "auth.confirmEmail.notReceived": "Haven't received your code?",
-    "auth.confirmEmail.resend": "Resend code",
-  
-    "auth.changePassword.title": "Change password",
-    "auth.changePassword.newPassword": "New password",
-    "auth.changePassword.enterNewPassword": "Enter new password",
-    "auth.changePassword.confirmPassword": "Confirm password",
-    "auth.changePassword.enterConfirmPassword": "Enter confirm password",
-    "auth.changePassword.notMatch": "Password and Confirm Password do not match!",
-    "auth.changePassword.success": "Change password successfully!",
-  
-    "validation.username.empty": "Username can not be empty!",
-    "validation.password.empty": "Password can not be empty!",
-    "validation.email.empty": "Email can not be empty!",
-    "validation.login.invalid": "Username/Password is incorrect!",
-    "validation.username.invalid": "Username must be a valid email or phone number.",
-    "validation.code.invalid": "Invalid code. Please enter exactly 6 alphanumeric characters.",
-    "validation.code.expired": "Code has expired!",
-  
-    "common.code.message": "Your code will expire in:",
-
-    "dashboard.title": "Dashboard",
-
-    "orders.title": "Orders",
-
-    "products.title": "Products",
-
-    "categories.title": "Categories",
-    
-    "customers.title": "Customers",
-    
-    "reports.title": "Reports",
-    
-    "settings.title": "Settings",
-    "setting.personalSetting.title": "Personal Setting",
-    "setting.globalSetting.title": "Global Setting"
-    
+  "auth": {
+    "register": {
+      "title": "Create an Account",
+      "haveAccount": "Have an account?",
+      "button": "Create Account",
+      "google": "Continue with Google",
+      "newUser": "New to our Product?",
+      "username": "Username",
+      "enterUsername": "Enter username",
+      "enterEmail": "Enter Email Address",
+      "enterPassword": "Enter password"
+    },
+    "login": {
+      "title": "Sign in",
+      "button": "Sign in",
+      "username": "Username",
+      "password": "Password",
+      "orGoogle": "Or sign in using:",
+      "google": "Continue with Google",
+      "forgotPassword": "Forgot your password?",
+      "rememberedPassword": "Remembered your password?",
+      "backToSignIn": "Back to Sign In"
+    },
+    "logout": {
+      "title": "Log out"
+    },
+    "reset": {
+      "title": "Password Reset",
+      "subtitle": "We will help you reset your password",
+      "button": "Reset password"
+    },
+    "confirmEmail": {
+      "title": "Confirm Email",
+      "subtitle": "Check Your Email and Enter Confirmation Code",
+      "codeLabel": "Confirmation Code",
+      "enterCode": "Enter Code",
+      "notReceived": "Haven't received your code?",
+      "resend": "Resend code"
+    },
+    "changePassword": {
+      "title": "Change password",
+      "newPassword": "New password",
+      "enterNewPassword": "Enter new password",
+      "confirmPassword": "Confirm password",
+      "enterConfirmPassword": "Enter confirm password",
+      "notMatch": "Password and Confirm Password do not match!",
+      "success": "Change password successfully!"
+    }
+  },
+  "validation": {
+    "username": {
+      "empty": "Username can not be empty!",
+      "invalid": "Username must be a valid email or phone number."
+    },
+    "password": {
+      "empty": "Password can not be empty!"
+    },
+    "email": {
+      "empty": "Email can not be empty!"
+    },
+    "login": {
+      "invalid": "Username/Password is incorrect!"
+    },
+    "code": {
+      "invalid": "Invalid code. Please enter exactly 6 alphanumeric characters.",
+      "expired": "Code has expired!"
+    }
+  },
+  "common": {
+    "code": {
+      "message": "Your code will expire in:"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "orders": {
+    "title": "Orders"
+  },
+  "products": {
+    "title": "Products"
+  },
+  "categories": {
+    "title": "Categories"
+  },
+  "customers": {
+    "title": "Customers"
+  },
+  "reports": {
+    "title": "Reports"
+  },
+  "settings": {
+    "title": "Settings",
+    "personalSetting": {
+      "title": "Personal Setting"
+    },
+    "globalSetting": {
+      "title": "Global Setting"
+    }
+  },
+  "notification": {
+    "markAsRead": "Mark as read",
+    "deleteNotification": "Delete this notification",
+    "deleteNotification.toast": "Delete notification successfully"
+  },
+  "time": {
+    "second": "seconds",
+    "minute": "minutes",
+    "hour": "hours",
+    "day": "days",
+    "week": "weeks",
+    "month": "months",
+    "year": "years"
   }
+}

@@ -1,69 +1,116 @@
 {
-    "auth.register.title": "Tạo tài khoản",
-    "auth.register.haveAccount": "Đã có tài khoản?",
-    "auth.register.button": "Tạo tài khoản",
-    "auth.register.google": "Tiếp tục với Google",
-    "auth.register.newUser": "Bạn chưa có tài khoản?",
-    "auth.register.username": "Tên tài khoản",
-    "auth.register.enterUsername": "Nhập tên tài khoản",
-    "auth.register.enterEmail": "Nhập email",
-    "auth.register.enterPassword": "Nhập mật khẩu",
-  
-    "auth.login.title": "Đăng nhập",
-    "auth.login.button": "Đăng nhập",
-    "auth.login.username": "Tài khoản",
-    "auth.login.password": "Mật khẩu",
-    "auth.login.orGoogle": "Hoặc đăng nhập bằng:",
-    "auth.login.google": "Tiếp tục với Google",
-    "auth.login.forgotPassword": "Quên mật khẩu?",
-    "auth.login.rememberedPassword": "Nhớ mật khẩu?",
-    "auth.login.backToSignIn": "Quay lại đăng nhập",
-
-    "auth.logout.title": "Đăng xuất",
-  
-    "auth.reset.title": "Đổi mật khẩu",
-    "auth.reset.subtitle": "Chúng tôi sẽ giúp bạn đổi mật khẩu",
-    "auth.reset.button": "Đổi mật khẩu",
-  
-    "auth.confirmEmail.title": "Xác nhận Email",
-    "auth.confirmEmail.subtitle": "Kiểm tra email của bạn và nhập mã xác nhận",
-    "auth.confirmEmail.codeLabel": "Mã xác nhận",
-    "auth.confirmEmail.enterCode": "Nhập mã",
-    "auth.confirmEmail.notReceived": "Chưa nhận được mã?",
-    "auth.confirmEmail.resend": "Gửi lại mã xác nhận",
-  
-    "auth.changePassword.title": "Đổi mật khẩu",
-    "auth.changePassword.newPassword": "Mật khẩu mới",
-    "auth.changePassword.enterNewPassword": "Nhập mật khẩu mới",
-    "auth.changePassword.confirmPassword": "Xác nhận mật khẩu",
-    "auth.changePassword.enterConfirmPassword": "Nhập mật khẩu xác nhận",
-    "auth.changePassword.notMatch": "Mật khẩu và Mật khẩu xác nhận không trùng khớp!",
-    "auth.changePassword.success": "Đổi mật khẩu thành công!",
-  
-    "validation.username.empty": "Tài khoản không được để trống!",
-    "validation.password.empty": "Mật khẩu không được để trống!",
-    "validation.email.empty": "Email không được để trống!",
-    "validation.login.invalid": "Tài khoản hoặc mật khẩu không đúng!",
-    "validation.username.invalid": "Tên tài khoản phải là email hoặc SĐT hợp lệ!",
-    "validation.code.invalid": "Mã không hợp lệ. Vui lòng nhập đúng 6 ký tự chữ hoặc số.",
-    "validation.code.expired": "Mã đã hết hạn!",
-  
-    "common.code.message": "Mã sẽ hết hạn sau:",
-
-    "dashboard.title": "Bảng điều khiển",
-
-    "orders.title": "Đơn hàng",
-
-    "products.title": "Sản phẩm",
-
-    "categories.title": "Thể loại",
-    
-    "customers.title": "Khách hàng",
-    
-    "reports.title": "Báo cáo",
-    
-    "settings.title": "Cài đặt",
-    "setting.personalSetting.title": "Cài đặt cá nhân",
-    "setting.globalSetting.title": "Cài đặt chung"
-
+  "auth": {
+    "register": {
+      "title": "Tạo tài khoản",
+      "haveAccount": "Đã có tài khoản?",
+      "button": "Tạo tài khoản",
+      "google": "Tiếp tục với Google",
+      "newUser": "Bạn chưa có tài khoản?",
+      "username": "Tên tài khoản",
+      "enterUsername": "Nhập tên tài khoản",
+      "enterEmail": "Nhập email",
+      "enterPassword": "Nhập mật khẩu"
+    },
+    "login": {
+      "title": "Đăng nhập",
+      "button": "Đăng nhập",
+      "username": "Tài khoản",
+      "password": "Mật khẩu",
+      "orGoogle": "Hoặc đăng nhập bằng:",
+      "google": "Tiếp tục với Google",
+      "forgotPassword": "Quên mật khẩu?",
+      "rememberedPassword": "Nhớ mật khẩu?",
+      "backToSignIn": "Quay lại đăng nhập"
+    },
+    "logout": {
+      "title": "Đăng xuất"
+    },
+    "reset": {
+      "title": "Đổi mật khẩu",
+      "subtitle": "Chúng tôi sẽ giúp bạn đổi mật khẩu",
+      "button": "Đổi mật khẩu"
+    },
+    "confirmEmail": {
+      "title": "Xác nhận Email",
+      "subtitle": "Kiểm tra email của bạn và nhập mã xác nhận",
+      "codeLabel": "Mã xác nhận",
+      "enterCode": "Nhập mã",
+      "notReceived": "Chưa nhận được mã?",
+      "resend": "Gửi lại mã xác nhận"
+    },
+    "changePassword": {
+      "title": "Đổi mật khẩu",
+      "newPassword": "Mật khẩu mới",
+      "enterNewPassword": "Nhập mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "enterConfirmPassword": "Nhập mật khẩu xác nhận",
+      "notMatch": "Mật khẩu và Mật khẩu xác nhận không trùng khớp!",
+      "success": "Đổi mật khẩu thành công!"
+    }
+  },
+  "validation": {
+    "username": {
+      "empty": "Tài khoản không được để trống!",
+      "invalid": "Tên tài khoản phải là email hoặc SĐT hợp lệ!"
+    },
+    "password": {
+      "empty": "Mật khẩu không được để trống!"
+    },
+    "email": {
+      "empty": "Email không được để trống!"
+    },
+    "login": {
+      "invalid": "Tài khoản hoặc mật khẩu không đúng!"
+    },
+    "code": {
+      "invalid": "Mã không hợp lệ. Vui lòng nhập đúng 6 ký tự chữ hoặc số.",
+      "expired": "Mã đã hết hạn!"
+    }
+  },
+  "common": {
+    "code": {
+      "message": "Mã sẽ hết hạn sau:"
+    }
+  },
+  "dashboard": {
+    "title": "Bảng điều khiển"
+  },
+  "orders": {
+    "title": "Đơn hàng"
+  },
+  "products": {
+    "title": "Sản phẩm"
+  },
+  "categories": {
+    "title": "Thể loại"
+  },
+  "customers": {
+    "title": "Khách hàng"
+  },
+  "reports": {
+    "title": "Báo cáo"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "personalSetting": {
+      "title": "Cài đặt cá nhân"
+    },
+    "globalSetting": {
+      "title": "Cài đặt chung"
+    }
+  },
+  "notification": {
+    "markAsRead": "Đánh dấu là đã đọc",
+    "deleteNotification": "Xoá thông báo này",
+    "deleteNotification.toast": "Đã xoá thông báo"
+  },
+  "time": {
+    "second": "giây",
+    "minute": "phút",
+    "hour": "giờ",
+    "day": "ngày",
+    "week": "tuần",
+    "month": "tháng",
+    "year": "năm"
   }
+}
